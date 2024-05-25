@@ -1,6 +1,10 @@
 # real_time_analyzer.py
 import json
+import logging 
 from data_collector import collect_sensor_data
+
+# Set up logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def analyze_data(data):
     """Analyze the data for any anomalies or specific conditions."""
@@ -20,9 +24,9 @@ def real_time_analysis():
         while True:
             data = collect_sensor_data()
             analysis_result = analyze_data(data)
-            print(f"Analysis at {data['timestamp']}: {analysis_result}")
+            logging.info(f"Analysis at {data['timestamp']}: {analysis_result}")
     except KeyboardInterrupt:
-        print("Real-time analysis stopped.")
+        logging.info("Real-time analysis stopped.")
 
 if __name__ == "__main__":
     real_time_analysis()
